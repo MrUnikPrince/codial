@@ -1,9 +1,22 @@
-const { log } = require("console");
-const express = require("express");
+const { log } = require('console');
+const express = require('express');
 const port = 8000;
-const db = require("./config/mongoose");
+const db = require('./config/mongoose');
 
+// express app
 const app = express();
+
+// use static files
+app.use(express.static('./assets'));
+
+// set the express Layouts
+// extract style and scripts form sub pages into the layout
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
+
+// let's set up the view engine
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
 
 // setting up server

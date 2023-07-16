@@ -1,6 +1,9 @@
 const { log } = require("console");
 const mongoose = require("mongoose");
 
+
+// connecting with Database
+
 mongoose.connect("mongodb://localhost/codial",{useNewUrlParser: true,
 useUnifiedTopology: true,})
 .then(() => log("Connected to mongoDB"))

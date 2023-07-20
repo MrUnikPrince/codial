@@ -2,6 +2,7 @@ const { log } = require('console');
 const express = require('express');
 const port = 8000;
 const db = require('./config/mongoose');
+const expressLayouts = require('express-ejs-layouts');
 
 // express app
 const app = express();
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.static('./assets'));
 
 // set the express Layouts
+app.use(expressLayouts);
 // extract style and scripts form sub pages into the layout
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);

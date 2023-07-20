@@ -42,23 +42,22 @@ module.exports.create = async (req, res) => {
 }
 
 // sign in and create a session for user
-// module.exports.createSession = async (req, res) => {
-//     try{
-//         const {email , password } = req.body;
-        
-//         // find the user in the database by email
-//         const user = await User.findOne({email});
+module.exports.createSession = async (req, res) => {
+    try{
+        const {email , password } = req.body;
+        // find the user in the database by email
+        const user = await User.findOne({email});
 
-//         // if user is not found or password is incorrect
-//         if(!user || user.password !== password){
-//             return res.redirect('/users/log-in?error=Invalid%20email%20or%20password');
-//         }
+        // if user is not found or password is incorrect
+        if(!user || user.password != password){
+            return res.redirect('back');
+        }
 
-//         req.session.isLoggedIn = true;
-//         req.session.userId = user._id;
-
-//         return res.redirect('/users/profile')
-//     }catch(err){
-//         console.log(`Error in creating user session ${err}`)
-//     }
-// }
+        // req.session.isLoggedIn = true;
+        res.cookie('user_id', user._id);
+        return res.redirect('/users/profile')
+    }catch(err){
+        console.log(`Error in creating user session ${err}`)
+        return res.redirect('back');
+    }
+}

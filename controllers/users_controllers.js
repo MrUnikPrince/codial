@@ -16,3 +16,13 @@ module.exports.signIn = (req, res) => {
         title: "Codial | sign in"
     });
 }
+
+// get the sign up data
+module.exports.create = async (req, res) => {
+
+}
+
+// sign in and create a session for user
+module.exports.createSession = (req,res) => {
+
+}

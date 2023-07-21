@@ -1,8 +1,17 @@
 const User = require('../models/user')
-module.exports.profile = (req, res) => {
-    return res.render('user_profile', {
-        title: 'User Profle'
-    });
+module.exports.profile = async (req, res) => {
+    if(req.cookies.user_id){
+        const user = await User.findById(req.cookies.user_id);
+        if(user){
+            return res.render('user_profile', {
+                title: 'User Profle',
+                user:user
+            });
+        }
+        return res.redirect('/users/sign-in')
+    }else{
+        return res.redirect('/users/sign-in')
+    }
 }
 
 // sign up controller 
@@ -52,7 +61,6 @@ module.exports.createSession = async (req, res) => {
         if(!user || user.password != password){
             return res.redirect('back');
         }
-
         // req.session.isLoggedIn = true;
         res.cookie('user_id', user._id);
         return res.redirect('/users/profile')
@@ -60,4 +68,10 @@ module.exports.createSession = async (req, res) => {
         console.log(`Error in creating user session ${err}`)
         return res.redirect('back');
     }
+}
+
+// user
+module.exports.signOut = (req,res) => {
+    res.clearCookie('user_id');
+    return res.redirect('/users/sign-in');
 }

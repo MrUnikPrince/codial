@@ -4,9 +4,9 @@ const mongoose = require("mongoose");
 
 // connecting with Database
 
-mongoose.connect("mongodb://localhost/codial",{useNewUrlParser: true,
+const db  =  mongoose.connect("mongodb://localhost/codial",{useNewUrlParser: true,
 useUnifiedTopology: true,})
 .then(() => log("Connected to mongoDB"))
 .catch((err) => log(`Error in connecting to mongoDb ${err}`));
 
-// module.exports = db;
+module.exports = db;

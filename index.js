@@ -1,7 +1,7 @@
 const { log } = require('console');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const port = 9000;
+const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
 // express app
@@ -19,7 +19,7 @@ app.use(sassMiddleware({
     dest: './assets/css',
     debug: true,
     outputStyle: 'extended',
-    prefix: './css'
+    prefix: '/css'
 }));
 
 app.use(express.urlencoded({ extended: true }));

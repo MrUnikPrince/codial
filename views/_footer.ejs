@@ -1,3 +1,16 @@
 <footer>
-    Page Footer
+    <div class="credits">
+        <p>@prince all right reserved </p>
+    </div>
+<div class="nav-links">
+    <% if (locals.user) { %>
+        <a href="/users/profile">
+            Home
+        </a>
+        <a href="/users/sign-out">Sign Out</a>
+        <% } else { %>
+            <a href="/users/sign-in">Sign In</a>
+            <a href="/users/sign-up">Sign Up</a>
+        <% } %>
+</div>
 </footer>

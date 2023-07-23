@@ -1,0 +1,13 @@
+footer {
+  background-color: pink;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; }
+  footer .credits {
+    margin-left: 10px;
+    margin-right: 20px; }
+  footer .nav-links a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-right: 15px; }

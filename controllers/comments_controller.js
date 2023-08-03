@@ -8,7 +8,7 @@ module.exports.create = async (req, res) => {
             const comment = await Comment.create({
                 content: req.body.content,
                 post: req.body.post,
-                post: req.body._id
+                user: req.user._id
             });
             post.comments.push(comment);
             await post.save();

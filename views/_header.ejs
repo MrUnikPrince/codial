@@ -6,7 +6,7 @@
     </div>
     <div class="nav-links">
         <% if (locals.user) { %>
-            <a href="/users/profile">
+            <a href="/users/profile/<%= user.id %>">
                 <%= user.name %>
             </a>
             <a href="/users/sign-out">Sign Out</a>

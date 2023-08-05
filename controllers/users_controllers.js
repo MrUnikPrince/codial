@@ -1,10 +1,23 @@
 const User = require('../models/user');
-module.exports.profile = (req,res) => {
+module.exports.profile = async (req,res) => {
+    const user = await User.findById(req.params.id);
     return res.render('user_profile', {
-        title:'User Profle'
+        title:'User Profile',
+        profile_user: user
     });
 }
 
+//  update user
+module.exports.update = async (req, res) => {
+    try{
+        if(req.user.id == req.params.id){
+            await User.findByIdAndUpdate(req.params.id, req.body);
+            return res.redirect('back');
+        }
+    }catch(err){
+        return res.status(401).send('Unauthorized');
+    }
+}
 // sign up controller 
 module.exports.signUP = (req, res) => {
     if(req.isAuthenticated()){
@@ -51,6 +64,7 @@ module.exports.create = async (req, res) => {
 
 // sign in and create a session for user
 module.exports.createSession = (req,res) => {
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/');
 }
 
@@ -62,6 +76,7 @@ module.exports.destroySession = (req, res) => {
         console.log('Error in logging out:', err);
         return res.redirect('/');
       }
+      req.flash('success', 'You have logged out!');
       return res.redirect('/');
     });
   };

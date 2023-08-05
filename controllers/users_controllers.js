@@ -41,6 +41,7 @@ module.exports.signIn = (req, res) => {
 module.exports.create = async (req, res) => {
     // check Password is match
     if (req.body.password != req.body.confirm_password) {
+        req.flash('error', 'Password not matches');
         return res.redirect('back');
     }
     console.log(req.body);
